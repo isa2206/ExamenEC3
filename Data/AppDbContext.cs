@@ -105,10 +105,17 @@ namespace Examen.Data
                 e.Property(x => x.Points).HasDefaultValue(0);
                 e.HasIndex(x => x.Code).IsUnique(); // código de tarjeta único
 
+                /* e.HasOne(x => x.Customer)
+                  .WithOne(c => c.LoyaltyCard)
+                  .HasForeignKey<LoyaltyCard>(x => x.CustomerId)
+                  .OnDelete(DeleteBehavior.Restrict);
+                */
+
                 e.HasOne(x => x.Customer)
-                 .WithOne(c => c.LoyaltyCard)
-                 .HasForeignKey<LoyaltyCard>(x => x.CustomerId)
+                 .WithMany(c => c.LoyaltyCards)
+                 .HasForeignKey(x => x.CustomerId)
                  .OnDelete(DeleteBehavior.Restrict);
+
             });
 
             // TICKET

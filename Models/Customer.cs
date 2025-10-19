@@ -11,7 +11,9 @@ namespace Examen.Models
         public bool Active { get; set; } = true;
 
         // 1:1 (base del examen) — luego lo cambiarán a 1:N
-        public LoyaltyCard? LoyaltyCard { get; set; }
+        // public LoyaltyCard? LoyaltyCard { get; set; }
+
+        public ICollection<LoyaltyCard> LoyaltyCards { get; set; } = new List<LoyaltyCard>();
 
         public ICollection<Ticket> Tickets { get; set; } = new List<Ticket>();
     }
